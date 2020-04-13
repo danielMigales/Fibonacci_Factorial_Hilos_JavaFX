@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="480.0" prefWidth="640.0" style="-fx-background-color: #819FF7;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="base.FXMLController">
+   <children>
+      <MenuBar fx:id="MenuBar" cache="true" cacheHint="SPEED" layoutX="10.0" layoutY="14.0" prefHeight="30.0" prefWidth="620.0" style="-fx-background-color: #819FF7;">
+        <menus>
+          <Menu mnemonicParsing="false" text="Archivo">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#closeApp" text="Cerrar" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Editar">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Borrar" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Ayuda">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#info" text="Acerca" />
+            </items>
+          </Menu>
+        </menus>
+         <effect>
+            <Blend />
+         </effect>
+      </MenuBar>
+      <TabPane fx:id="tabPane" layoutX="10.0" layoutY="54.0" prefHeight="400.0" prefWidth="620.0" side="LEFT" style="-fx-background-color: #819FF7;" tabClosingPolicy="UNAVAILABLE" tabMinHeight="40.0" tabMinWidth="100.0">
+        <tabs>
+          <Tab text="Fibonacci">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="375.0" prefWidth="458.0">
+                     <children>
+                        <TextArea fx:id="TextareaFibonacci" layoutX="26.0" layoutY="136.0" prefHeight="220.0" prefWidth="415.0" />
+                        <ProgressBar fx:id="progressBarFibonacci" layoutX="25.0" layoutY="88.0" prefHeight="20.0" prefWidth="415.0" progress="0.0" />
+                        <Label fx:id="labelFibonacci" layoutX="25.0" layoutY="33.0" prefHeight="30.0" prefWidth="160.0" text="Calcular serie" textAlignment="JUSTIFY" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="TexfieldValueFibonacci" layoutX="206.0" layoutY="29.0" prefHeight="40.0" prefWidth="230.0" promptText="Introduzca un numero" />
+                        <Button fx:id="buttonCalculateFibonacci" layoutX="477.0" layoutY="59.0" mnemonicParsing="false" onAction="#buttonCalculateFibonacci" prefHeight="60.0" prefWidth="80.0" style="-fx-background-color: #FFFFFF;" text="Calcular">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="buttonCleanFibonacci" layoutX="477.0" layoutY="217.0" mnemonicParsing="false" onAction="#cleanTextAreaFibonacci" prefHeight="60.0" prefWidth="80.0" style="-fx-background-color: #FFFFFF;" text="Reset">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Separator layoutX="455.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="10.0" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Factorial">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TextArea fx:id="TextareaFactorial" layoutX="26.0" layoutY="137.0" prefHeight="220.0" prefWidth="415.0" />
+                        <TextField fx:id="TextfieldValueFactorial" layoutX="206.0" layoutY="29.0" prefHeight="40.0" prefWidth="230.0" promptText="Introduzca un numero" />
+                        <ProgressBar fx:id="progressBarFactorial" layoutX="25.0" layoutY="88.0" prefHeight="20.0" prefWidth="415.0" progress="0.0" />
+                        <Label fx:id="labelFactorial" layoutX="25.0" layoutY="33.0" prefHeight="30.0" prefWidth="160.0" text="Calcular factorial" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="buttonCalculateFactorial" layoutX="477.0" layoutY="59.0" mnemonicParsing="false" onAction="#buttonCalculateFactorial" prefHeight="60.0" prefWidth="80.0" style="-fx-background-color: #FFFFFF;" text="Calcular">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="buttonCleanFactorial" layoutX="477.0" layoutY="217.0" mnemonicParsing="false" onAction="#cleanTextAreaFactorial" prefHeight="60.0" prefWidth="80.0" style="-fx-background-color: #FFFFFF;" text="Reset">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Separator layoutX="455.0" layoutY="1.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="10.0" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>
