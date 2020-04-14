@@ -1,9 +1,10 @@
 package base;
 
-import static java.lang.Thread.sleep;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
@@ -16,6 +17,7 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 /**
@@ -76,14 +78,50 @@ public class FXMLController implements Initializable {
     }
 
     @FXML
-    void closeApp(ActionEvent event) {
+    void saveTxt(ActionEvent event) { //guarda los resultados en un archivo txt
+        
+        FileChooser fileChooser = new FileChooser();
+        Stage stage = null;
+        File file = fileChooser.showSaveDialog(stage);
+        if (file != null) {
+            FileWriter fw = null;
+            BufferedWriter bw = null;
+            try {
+                fw = new FileWriter(file, false);
+                bw = new BufferedWriter(fw);
+
+                String textoFibonacci = TextareaFibonacci.getText();
+                String textoFactorial = TextareaFactorial.getText();
+                
+                bw.write("\nCalculo de la serie fibonacci\n");
+                bw.write(textoFibonacci, 0, textoFibonacci.length());
+                bw.write("\nCalculo del Factorial\n");
+                bw.write(textoFactorial, 0, textoFactorial.length());
+            } catch (Exception ex) {
+                TextareaFibonacci.appendText(ex.toString());
+                TextareaFactorial.appendText(ex.toString());
+            } finally {
+                try {
+                    bw.close();
+                } catch (Exception ex2) {
+                    TextareaFibonacci.appendText(ex2.toString());
+                    TextareaFactorial.appendText(ex2.toString());
+                }
+            }
+        }
+    }
+
+    @FXML
+    void closeApp(ActionEvent event
+    ) {
 
         Stage stage = (Stage) this.MenuBar.getScene().getWindow();
         stage.close();
     }
 
     @FXML
-    void info(ActionEvent event) {
+    void info(ActionEvent event
+    ) {
 
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Acerca de");
@@ -93,83 +131,49 @@ public class FXMLController implements Initializable {
     }
 
     @FXML
-    void buttonCalculateFibonacci(ActionEvent event) {
+    void buttonCalculateFibonacci(ActionEvent event
+    ) {
 
-        calculateFibonacci();
-        fillProgress(progressBarFibonacci);
-    }
-
-    @FXML
-    void buttonCalculateFactorial(ActionEvent event) {
-
-        calculateFactorial();
-        fillProgress(progressBarFactorial);
-    }
-
-    @FXML
-    void cleanTextAreaFibonacci(ActionEvent event) {
-
-        TextareaFibonacci.clear();
-        TexfieldValueFibonacci.clear();
-        progressBarFibonacci.setProgress(0);
-    }
-
-    @FXML
-    void cleanTextAreaFactorial(ActionEvent event) {
-
-        TextareaFactorial.clear();
-        TextfieldValueFactorial.clear();
-        progressBarFactorial.setProgress(0);
-    }
-
-    private void calculateFibonacci() {
-
-        new Thread(new Runnable() {
+        //hilo que calcula la serie de fibonacci
+        Thread hilo1 = new Thread() {
             @Override
             public void run() {
-
                 int n = Integer.parseInt(TexfieldValueFibonacci.getText());
                 int a = 0;
                 int b = 1;
                 int c = 1;
 
                 for (int i = 0; i < n; i++) {
-
-                    try {
-                        Thread.sleep(10);
-                        TextareaFibonacci.appendText(String.valueOf(a + "\t"));
-                    } catch (InterruptedException ex) {
-                    }
-
+                    TextareaFibonacci.appendText(String.valueOf(a + "\t"));
                     c = a + b;
                     a = b;
                     b = c;
                 }
             }
-        }).start();
-    }
+        };
 
-    private void fillProgress(ProgressBar progressBar) {
-
-        new Thread(new Runnable() {
+        //hilo que contrala la barra de progreso
+        Thread hilo2 = new Thread() {
             @Override
             public void run() {
-                for (int i = 0; i <= 100; i++) {
-                    try {
-                        Thread.sleep(1000);
-                        final int position = i;
-                        progressBar.setProgress(position / 100.0);
-                    } catch (InterruptedException ex) {
-                    }
-
+                int n = Integer.parseInt(TexfieldValueFibonacci.getText());
+                for (int i = 0; i <= n; i++) {
+                    final int position = i;
+                    progressBarFibonacci.setProgress(position / n);
                 }
             }
-        }).start();
+        };
+
+        hilo1.start();
+        hilo2.start();
     }
 
-    private void calculateFactorial() {
+    @FXML
+    void buttonCalculateFactorial(ActionEvent event
+    ) {
 
-        new Thread(new Runnable() {
+        //hilo que calcula el factorial de un numero
+        Thread hilo3 = new Thread() {
             @Override
             public void run() {
 
@@ -185,6 +189,40 @@ public class FXMLController implements Initializable {
                 }
                 TextareaFactorial.setText(String.valueOf(factorial));
             }
-        }).start();
+        };
+
+        //hilo que contrala la barra de progreso
+        Thread hilo4 = new Thread() {
+            @Override
+            public void run() {
+                int n = 100;
+                for (int i = 0; i <= n; i++) {
+                    final int position = i;
+                    progressBarFactorial.setProgress(position / 100.0);
+                }
+            }
+        };
+
+        hilo3.start();
+        hilo4.start();
     }
+
+    @FXML
+    void cleanTextAreaFibonacci(ActionEvent event
+    ) {
+
+        TextareaFibonacci.clear();
+        TexfieldValueFibonacci.clear();
+        progressBarFibonacci.setProgress(0);
+    }
+
+    @FXML
+    void cleanTextAreaFactorial(ActionEvent event
+    ) {
+
+        TextareaFactorial.clear();
+        TextfieldValueFactorial.clear();
+        progressBarFactorial.setProgress(0);
+    }
+
 }

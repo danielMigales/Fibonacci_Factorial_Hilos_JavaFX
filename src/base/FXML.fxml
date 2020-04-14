@@ -15,18 +15,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="480.0" prefWidth="640.0" style="-fx-background-color: #819FF7;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="base.FXMLController">
+<AnchorPane id="AnchorPane" prefHeight="458.0" prefWidth="640.0" style="-fx-background-color: #819FF7;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="base.FXMLController">
    <children>
       <MenuBar fx:id="MenuBar" cache="true" cacheHint="SPEED" layoutX="10.0" layoutY="14.0" prefHeight="30.0" prefWidth="620.0" style="-fx-background-color: #819FF7;">
         <menus>
           <Menu mnemonicParsing="false" text="Archivo">
             <items>
+                  <MenuItem mnemonicParsing="false" onAction="#saveTxt" text="Exportar a txt" />
               <MenuItem mnemonicParsing="false" onAction="#closeApp" text="Cerrar" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Editar">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Borrar" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Ayuda">
@@ -39,13 +35,13 @@
             <Blend />
          </effect>
       </MenuBar>
-      <TabPane fx:id="tabPane" layoutX="10.0" layoutY="54.0" prefHeight="400.0" prefWidth="620.0" side="LEFT" style="-fx-background-color: #819FF7;" tabClosingPolicy="UNAVAILABLE" tabMinHeight="40.0" tabMinWidth="100.0">
+      <TabPane fx:id="tabPane" layoutX="1.0" layoutY="54.0" prefHeight="400.0" prefWidth="629.0" side="LEFT" style="-fx-background-color: #819FF7;" tabClosingPolicy="UNAVAILABLE" tabMinHeight="40.0" tabMinWidth="100.0">
         <tabs>
           <Tab text="Fibonacci">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="375.0" prefWidth="458.0">
                      <children>
-                        <TextArea fx:id="TextareaFibonacci" layoutX="26.0" layoutY="136.0" prefHeight="220.0" prefWidth="415.0" />
+                        <TextArea fx:id="TextareaFibonacci" layoutX="26.0" layoutY="136.0" prefHeight="220.0" prefWidth="415.0" promptText="Se calculara la serie de fibonacci n veces (siendo n el valor introducido)" />
                         <ProgressBar fx:id="progressBarFibonacci" layoutX="25.0" layoutY="88.0" prefHeight="20.0" prefWidth="415.0" progress="0.0" />
                         <Label fx:id="labelFibonacci" layoutX="25.0" layoutY="33.0" prefHeight="30.0" prefWidth="160.0" text="Calcular serie" textAlignment="JUSTIFY" textFill="WHITE">
                            <font>
@@ -53,12 +49,12 @@
                            </font>
                         </Label>
                         <TextField fx:id="TexfieldValueFibonacci" layoutX="206.0" layoutY="29.0" prefHeight="40.0" prefWidth="230.0" promptText="Introduzca un numero" />
-                        <Button fx:id="buttonCalculateFibonacci" layoutX="477.0" layoutY="59.0" mnemonicParsing="false" onAction="#buttonCalculateFibonacci" prefHeight="60.0" prefWidth="80.0" style="-fx-background-color: #FFFFFF;" text="Calcular">
+                        <Button fx:id="buttonCalculateFibonacci" layoutX="477.0" layoutY="59.0" mnemonicParsing="false" onAction="#buttonCalculateFibonacci" prefHeight="60.0" prefWidth="90.0" style="-fx-background-color: #FFFFFF;" text="Calcular">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button fx:id="buttonCleanFibonacci" layoutX="477.0" layoutY="217.0" mnemonicParsing="false" onAction="#cleanTextAreaFibonacci" prefHeight="60.0" prefWidth="80.0" style="-fx-background-color: #FFFFFF;" text="Reset">
+                        <Button fx:id="buttonCleanFibonacci" layoutX="477.0" layoutY="217.0" mnemonicParsing="false" onAction="#cleanTextAreaFibonacci" prefHeight="60.0" prefWidth="90.0" style="-fx-background-color: #FFFFFF;" text="Reset">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -72,7 +68,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TextArea fx:id="TextareaFactorial" layoutX="26.0" layoutY="137.0" prefHeight="220.0" prefWidth="415.0" />
+                        <TextArea fx:id="TextareaFactorial" layoutX="26.0" layoutY="137.0" prefHeight="220.0" prefWidth="415.0" promptText="Se calculara el factorial del numero introducido" />
                         <TextField fx:id="TextfieldValueFactorial" layoutX="206.0" layoutY="29.0" prefHeight="40.0" prefWidth="230.0" promptText="Introduzca un numero" />
                         <ProgressBar fx:id="progressBarFactorial" layoutX="25.0" layoutY="88.0" prefHeight="20.0" prefWidth="415.0" progress="0.0" />
                         <Label fx:id="labelFactorial" layoutX="25.0" layoutY="33.0" prefHeight="30.0" prefWidth="160.0" text="Calcular factorial" textFill="WHITE">
@@ -80,12 +76,12 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Button fx:id="buttonCalculateFactorial" layoutX="477.0" layoutY="59.0" mnemonicParsing="false" onAction="#buttonCalculateFactorial" prefHeight="60.0" prefWidth="80.0" style="-fx-background-color: #FFFFFF;" text="Calcular">
+                        <Button fx:id="buttonCalculateFactorial" layoutX="477.0" layoutY="59.0" mnemonicParsing="false" onAction="#buttonCalculateFactorial" prefHeight="60.0" prefWidth="90.0" style="-fx-background-color: #FFFFFF;" text="Calcular">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button fx:id="buttonCleanFactorial" layoutX="477.0" layoutY="217.0" mnemonicParsing="false" onAction="#cleanTextAreaFactorial" prefHeight="60.0" prefWidth="80.0" style="-fx-background-color: #FFFFFF;" text="Reset">
+                        <Button fx:id="buttonCleanFactorial" layoutX="477.0" layoutY="217.0" mnemonicParsing="false" onAction="#cleanTextAreaFactorial" prefHeight="60.0" prefWidth="90.0" style="-fx-background-color: #FFFFFF;" text="Reset">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -97,5 +93,6 @@
           </Tab>
         </tabs>
       </TabPane>
+      <Separator layoutY="53.0" prefHeight="0.0" prefWidth="640.0" />
    </children>
 </AnchorPane>
