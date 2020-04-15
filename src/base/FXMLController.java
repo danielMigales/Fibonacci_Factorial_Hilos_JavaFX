@@ -72,14 +72,16 @@ public class FXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+        //con esto los textarea se adaptan al tamaño del texto
         TextareaFibonacci.setWrapText(true);
         TextareaFactorial.setWrapText(true);
 
     }
 
     @FXML
-    void saveTxt(ActionEvent event) { //guarda los resultados en un archivo txt
-        
+    void saveTxt(ActionEvent event) {
+
+        //guarda los resultados en un archivo txt
         FileChooser fileChooser = new FileChooser();
         Stage stage = null;
         File file = fileChooser.showSaveDialog(stage);
@@ -92,7 +94,7 @@ public class FXMLController implements Initializable {
 
                 String textoFibonacci = TextareaFibonacci.getText();
                 String textoFactorial = TextareaFactorial.getText();
-                
+
                 bw.write("\nCalculo de la serie fibonacci\n");
                 bw.write(textoFibonacci, 0, textoFibonacci.length());
                 bw.write("\nCalculo del Factorial\n");
@@ -112,17 +114,17 @@ public class FXMLController implements Initializable {
     }
 
     @FXML
-    void closeApp(ActionEvent event
-    ) {
+    void closeApp(ActionEvent event) {
 
+        //cierra la aplicacion desde el menu cerrar
         Stage stage = (Stage) this.MenuBar.getScene().getWindow();
         stage.close();
     }
 
     @FXML
-    void info(ActionEvent event
-    ) {
+    void info(ActionEvent event) {
 
+        //cuadro de alerta que se muestra en el menu ayuda
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Acerca de");
         alert.setHeaderText(null);
@@ -131,10 +133,9 @@ public class FXMLController implements Initializable {
     }
 
     @FXML
-    void buttonCalculateFibonacci(ActionEvent event
-    ) {
+    void buttonCalculateFibonacci(ActionEvent event) {//asociado al boton calcular en la pestaña calculo fibonacci
 
-        //hilo que calcula la serie de fibonacci
+        //hilo que calcula la serie de fibonacci 
         Thread hilo1 = new Thread() {
             @Override
             public void run() {
@@ -152,7 +153,7 @@ public class FXMLController implements Initializable {
             }
         };
 
-        //hilo que contrala la barra de progreso
+        //hilo que controla la barra de progreso
         Thread hilo2 = new Thread() {
             @Override
             public void run() {
@@ -169,8 +170,7 @@ public class FXMLController implements Initializable {
     }
 
     @FXML
-    void buttonCalculateFactorial(ActionEvent event
-    ) {
+    void buttonCalculateFactorial(ActionEvent event ) { //asociado al boton calcular en la pestaña factorial
 
         //hilo que calcula el factorial de un numero
         Thread hilo3 = new Thread() {
@@ -191,7 +191,7 @@ public class FXMLController implements Initializable {
             }
         };
 
-        //hilo que contrala la barra de progreso
+        //hilo que controla la barra de progreso
         Thread hilo4 = new Thread() {
             @Override
             public void run() {
@@ -208,18 +208,18 @@ public class FXMLController implements Initializable {
     }
 
     @FXML
-    void cleanTextAreaFibonacci(ActionEvent event
-    ) {
-
+    void cleanTextAreaFibonacci(ActionEvent event) { //boton limpiar pestaña fibonacci
+        
+        //limpia todos los areas de texto y pone la barra a 0
         TextareaFibonacci.clear();
         TexfieldValueFibonacci.clear();
         progressBarFibonacci.setProgress(0);
     }
 
     @FXML
-    void cleanTextAreaFactorial(ActionEvent event
-    ) {
-
+    void cleanTextAreaFactorial(ActionEvent event) {//boton limpiar pestaña factorial
+        
+        //limpia todos los areas de texto y pone la barra a 0
         TextareaFactorial.clear();
         TextfieldValueFactorial.clear();
         progressBarFactorial.setProgress(0);

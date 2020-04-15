@@ -41,7 +41,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="375.0" prefWidth="458.0">
                      <children>
-                        <TextArea fx:id="TextareaFibonacci" layoutX="26.0" layoutY="136.0" prefHeight="220.0" prefWidth="415.0" promptText="Se calculara la serie de fibonacci n veces (siendo n el valor introducido)" />
+                        <TextArea fx:id="TextareaFibonacci" layoutX="26.0" layoutY="136.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="220.0" prefWidth="415.0" promptText="Se calculara la serie de fibonacci n veces (siendo n el valor introducido)" />
                         <ProgressBar fx:id="progressBarFibonacci" layoutX="25.0" layoutY="88.0" prefHeight="20.0" prefWidth="415.0" progress="0.0" />
                         <Label fx:id="labelFibonacci" layoutX="25.0" layoutY="33.0" prefHeight="30.0" prefWidth="160.0" text="Calcular serie" textAlignment="JUSTIFY" textFill="WHITE">
                            <font>
