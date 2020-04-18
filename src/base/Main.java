@@ -6,7 +6,6 @@ package base;
  *
  */
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -29,19 +28,13 @@ public class Main extends Application {
         primaryStage.show();
 
         //esto sirve para que la ventana pueda ser arrastrada por la pantalla con el raton
-        root.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                xOffset = event.getSceneX();
-                yOffset = event.getSceneY();
-            }
+        root.setOnMousePressed((MouseEvent event) -> {
+            xOffset = event.getSceneX();
+            yOffset = event.getSceneY();
         });
-        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                primaryStage.setX(event.getScreenX() - xOffset);
-                primaryStage.setY(event.getScreenY() - yOffset);
-            }
+        root.setOnMouseDragged((MouseEvent event) -> {
+            primaryStage.setX(event.getScreenX() - xOffset);
+            primaryStage.setY(event.getScreenY() - yOffset);
         });
     }
 
